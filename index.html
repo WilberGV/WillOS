@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>RetroOS - Virtual Operating System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- BIOS -->
+    <div id="biosScreen"></div>
+
+    <!-- CARGA -->
+    <div id="loadingScreen">
+        Cargando RetroOS...
+        <div class="loading-bar">
+            <div class="loading-bar-fill"></div>
+        </div>
+    </div>
+
+    <!-- ESCRITORIO -->
+    <div id="desktop">
+
+        <!-- ICONOS DE ESCRITORIO -->
+        <div class="desktop-icon" onclick="openApp('notepad','Bloc de Notas')" style="top:40px; left:40px;">
+            <img src="assets/icons/notepad.png">
+            <span>Bloc de Notas</span>
+        </div>
+
+        <div class="desktop-icon" onclick="openApp('terminal','Terminal')" style="top:140px; left:40px;">
+            <img src="assets/icons/terminal.png">
+            <span>Terminal</span>
+        </div>
+
+        <div class="desktop-icon" onclick="openApp('info','Acerca')" style="top:240px; left:40px;">
+            <img src="assets/icons/system.png">
+            <span>Acerca</span>
+        </div>
+
+        <!-- MENÚ INICIO -->
+        <div id="startMenu">
+            <div onclick="openApp('notepad','Bloc de Notas')">Bloc de notas</div>
+            <div onclick="openApp('terminal','Terminal')">Terminal</div>
+            <div onclick="openApp('info','Acerca del sistema')">Acerca del sistema</div>
+        </div>
+
+        <!-- BARRA DE TAREAS -->
+        <div id="taskbar">
+            <div id="startButton">Inicio</div>
+            <div id="taskButtons"></div>
+        </div>
+
+        <!-- ------------ APPS ------------ -->
+
+        <!-- NOTEPAD -->
+        <div class="window" id="notepad">
+            <div class="window-header">
+                <span>Bloc de Notas</span>
+                <button class="close-btn" onclick="closeWindow('notepad')">X</button>
+            </div>
+            <textarea class="notepad-text"></textarea>
+        </div>
+
+        <!-- TERMINAL -->
+        <div class="window" id="terminal">
+            <div class="window-header">
+                <span>Terminal</span>
+                <button class="close-btn" onclick="closeWindow('terminal')">X</button>
+            </div>
+            <div id="terminalOutput"></div>
+            <input id="terminalInput" placeholder="Escribe un comando..."
+                    onkeydown="if(event.key==='Enter') executeCommand()">
+        </div>
+
+        <!-- INFO -->
+        <div class="window" id="info">
+            <div class="window-header">
+                <span>Acerca del sistema</span>
+                <button class="close-btn" onclick="closeWindow('info')">X</button>
+            </div>
+            <div class="window-content">
+                <h2>RetroOS v1.0</h2>
+                <p>Sistema Operativo Web desarrollado para proyecto final.</p>
+                <p>Incluye:</p>
+                <ul>
+                    <li>Arranque BIOS</li>
+                    <li>Escritorio</li>
+                    <li>Ventanas</li>
+                    <li>Aplicaciones simuladas</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JS -->
+    <script src="js/boot.js"></script>
+    <script src="js/windows.js"></script>
+    <script src="js/apps.js"></script>
+    <script src="js/desktop.js"></script>
+
+</body>
+</html>
